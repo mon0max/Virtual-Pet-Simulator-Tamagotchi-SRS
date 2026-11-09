@@ -1,0 +1,24 @@
+name: CI - Code Validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Validate HTML structure
+        run: test -f index.html
+      - name: Validate CSS file
+        run: test -f style.css
+      - name: Validate JavaScript file
+        run: test -f script.js
+      - name: Basic syntax check
+        run: node --check script.js
+      - name: Test pet behavior
+        run: node --test
