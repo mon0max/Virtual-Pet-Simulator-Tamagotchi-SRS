@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="draw.io" version="26.0.0">
+  <diagram id="pet-database" name="ER — Тамагочи">
+    <mxGraphModel dx="1450" dy="1050" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1450" pageHeight="1050" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="ТАМАГОЧИ | Реляционная модель данных" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=28;fontStyle=1;fontColor=#172f46;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="25" width="1320" height="46" />
+        </mxCell>
+        <mxCell id="subtitle" value="Лабораторная работа №4 • SQLite • 6 таблиц • нормализация до 3NF" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#526779;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="76" width="1320" height="30" />
+        </mxCell>
+        <mxCell id="users" value="Users — пользователи" style="swimlane;html=0;startSize=46;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;fontFamily=Arial;fontSize=18;fontStyle=1;align=left;spacingLeft=14;fillColor=#eaf2ff;swimlaneFillColor=#ffffff;strokeColor=#234e82;strokeWidth=1.5;fontColor=#234e82;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="150" width="310" height="150" />
+        </mxCell>
+        <mxCell id="users-row0" value="PK  user_id : INTEGER" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="users">
+          <mxGeometry as="geometry" x="0" y="48" width="310" height="32" />
+        </mxCell>
+        <mxCell id="users-row1" value="UQ  username : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="users">
+          <mxGeometry as="geometry" x="0" y="80" width="310" height="32" />
+        </mxCell>
+        <mxCell id="users-row2" value="created_at : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="users">
+          <mxGeometry as="geometry" x="0" y="112" width="310" height="32" />
+        </mxCell>
+        <mxCell id="pets" value="Pets — питомцы" style="swimlane;html=0;startSize=46;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;fontFamily=Arial;fontSize=18;fontStyle=1;align=left;spacingLeft=14;fillColor=#eaf2ff;swimlaneFillColor=#ffffff;strokeColor=#234e82;strokeWidth=1.5;fontColor=#234e82;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="510" y="150" width="370" height="342" />
+        </mxCell>
+        <mxCell id="pets-row0" value="PK  pet_id : INTEGER" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="48" width="370" height="32" />
+        </mxCell>
+        <mxCell id="pets-row1" value="FK  user_id : INTEGER NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="80" width="370" height="32" />
+        </mxCell>
+        <mxCell id="pets-row2" value="name : TEXT NOT NULL [1–20]" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="112" width="370" height="32" />
+        </mxCell>
+        <mxCell id="pets-row3" value="color : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="144" width="370" height="32" />
+        </mxCell>
+        <mxCell id="pets-row4" value="satiety : INTEGER [0–100] = 50" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="176" width="370" height="32" />
+        </mxCell>
+        <mxCell id="pets-row5" value="hydration : INTEGER [0–100] = 50" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="208" width="370" height="32" />
+        </mxCell>
+        <mxCell id="pets-row6" value="happiness : INTEGER [0–100] = 50" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="240" width="370" height="32" />
+        </mxCell>
+        <mxCell id="pets-row7" value="energy : INTEGER [0–100] = 50" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="272" width="370" height="32" />
+        </mxCell>
+        <mxCell id="pets-row8" value="created_at : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="pets">
+          <mxGeometry as="geometry" x="0" y="304" width="370" height="32" />
+        </mxCell>
+        <mxCell id="items" value="Items — предметы" style="swimlane;html=0;startSize=46;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;fontFamily=Arial;fontSize=18;fontStyle=1;align=left;spacingLeft=14;fillColor=#f2edfc;swimlaneFillColor=#ffffff;strokeColor=#62438c;strokeWidth=1.5;fontColor=#62438c;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1060" y="150" width="350" height="182" />
+        </mxCell>
+        <mxCell id="items-row0" value="PK  item_id : INTEGER" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="items">
+          <mxGeometry as="geometry" x="0" y="48" width="350" height="32" />
+        </mxCell>
+        <mxCell id="items-row1" value="UQ  code : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="items">
+          <mxGeometry as="geometry" x="0" y="80" width="350" height="32" />
+        </mxCell>
+        <mxCell id="items-row2" value="name : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="items">
+          <mxGeometry as="geometry" x="0" y="112" width="350" height="32" />
+        </mxCell>
+        <mxCell id="items-row3" value="item_type : TEXT [food, toy]" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="items">
+          <mxGeometry as="geometry" x="0" y="144" width="350" height="32" />
+        </mxCell>
+        <mxCell id="inventory" value="Pet_Items — инвентарь" style="swimlane;html=0;startSize=46;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;fontFamily=Arial;fontSize=18;fontStyle=1;align=left;spacingLeft=14;fillColor=#f2edfc;swimlaneFillColor=#ffffff;strokeColor=#62438c;strokeWidth=1.5;fontColor=#62438c;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1060" y="640" width="350" height="150" />
+        </mxCell>
+        <mxCell id="inventory-row0" value="PK, FK  pet_id : INTEGER" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="inventory">
+          <mxGeometry as="geometry" x="0" y="48" width="350" height="32" />
+        </mxCell>
+        <mxCell id="inventory-row1" value="PK, FK  item_id : INTEGER" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="inventory">
+          <mxGeometry as="geometry" x="0" y="80" width="350" height="32" />
+        </mxCell>
+        <mxCell id="inventory-row2" value="quantity : INTEGER &gt; 0" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="inventory">
+          <mxGeometry as="geometry" x="0" y="112" width="350" height="32" />
+        </mxCell>
+        <mxCell id="actiontypes" value="Action_Types — виды действий" style="swimlane;html=0;startSize=46;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;fontFamily=Arial;fontSize=18;fontStyle=1;align=left;spacingLeft=14;fillColor=#e5f5ef;swimlaneFillColor=#ffffff;strokeColor=#22674f;strokeWidth=1.5;fontColor=#22674f;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="680" width="380" height="150" />
+        </mxCell>
+        <mxCell id="actiontypes-row0" value="PK  action_type_id : INTEGER" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="actiontypes">
+          <mxGeometry as="geometry" x="0" y="48" width="380" height="32" />
+        </mxCell>
+        <mxCell id="actiontypes-row1" value="UQ  code : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="actiontypes">
+          <mxGeometry as="geometry" x="0" y="80" width="380" height="32" />
+        </mxCell>
+        <mxCell id="actiontypes-row2" value="name : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="actiontypes">
+          <mxGeometry as="geometry" x="0" y="112" width="380" height="32" />
+        </mxCell>
+        <mxCell id="actions" value="Actions — история ухода" style="swimlane;html=0;startSize=46;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;fontFamily=Arial;fontSize=18;fontStyle=1;align=left;spacingLeft=14;fillColor=#e5f5ef;swimlaneFillColor=#ffffff;strokeColor=#22674f;strokeWidth=1.5;fontColor=#22674f;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="510" y="680" width="370" height="182" />
+        </mxCell>
+        <mxCell id="actions-row0" value="PK  action_id : INTEGER" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="actions">
+          <mxGeometry as="geometry" x="0" y="48" width="370" height="32" />
+        </mxCell>
+        <mxCell id="actions-row1" value="FK  pet_id : INTEGER NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="actions">
+          <mxGeometry as="geometry" x="0" y="80" width="370" height="32" />
+        </mxCell>
+        <mxCell id="actions-row2" value="FK  action_type_id : INTEGER NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="actions">
+          <mxGeometry as="geometry" x="0" y="112" width="370" height="32" />
+        </mxCell>
+        <mxCell id="actions-row3" value="performed_at : TEXT NOT NULL" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;spacingLeft=14;fontColor=#24384a;" vertex="1" parent="actions">
+          <mxGeometry as="geometry" x="0" y="144" width="370" height="32" />
+        </mxCell>
+        <mxCell id="owns" value="1 : 0..N&#10;владеет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;endSize=16;startSize=12;strokeWidth=1.7;strokeColor=#60758a;fontFamily=Arial;fontSize=15;fontColor=#263c50;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.22;" edge="1" parent="1" source="users" target="pets">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="history" value="1 : 0..N&#10;действия" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;endSize=16;startSize=12;strokeWidth=1.7;strokeColor=#60758a;fontFamily=Arial;fontSize=15;fontColor=#263c50;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pets" target="actions">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="type" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;endSize=16;startSize=12;strokeWidth=1.7;strokeColor=#60758a;fontFamily=Arial;fontSize=15;fontColor=#263c50;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="actiontypes" target="actions">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="holds" value="1 : 0..N&#10;содержит" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;endSize=16;startSize=12;strokeWidth=1.7;strokeColor=#60758a;fontFamily=Arial;fontSize=15;fontColor=#263c50;labelBackgroundColor=#ffffff;exitX=1;exitY=0.66;entryX=0;entryY=0.5;" edge="1" parent="1" source="pets" target="inventory">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="catalog" value="1 : 0..N&#10;в инвентаре" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;endSize=16;startSize=12;strokeWidth=1.7;strokeColor=#60758a;fontFamily=Arial;fontSize=15;fontColor=#263c50;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="items" target="inventory">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mn" value="Pets M:N Items → Pet_Items&#10;Составной PK: (pet_id, item_id)" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#62438c;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1060" y="840" width="350" height="72" />
+        </mxCell>
+        <mxCell id="legend" value="PK — первичный ключ   |   FK — внешний ключ   |   UQ — уникальное значение&#10;1 : 0..N — один родитель, от нуля до многих дочерних записей; FK обязательны.&#10;Подробные CHECK, DEFAULT, правила удаления и индексы: database/schema.sql." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#526779;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="944" width="1370" height="80" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -47,3 +47,39 @@ node --test
 - [PR #35 — игра](https://github.com/mon0max/Virtual-Pet-Simulator-Tamagotchi-SRS/pull/35)
 - [Процесс разработки в Wiki](https://github.com/mon0max/Virtual-Pet-Simulator-Tamagotchi-SRS/wiki/Процесс-разработки)
 - [GitHub Actions](https://github.com/mon0max/Virtual-Pet-Simulator-Tamagotchi-SRS/actions)
+
+## База данных — лабораторная работа №4
+
+Спроектирована реляционная модель SQLite в 3NF: Users, Pets, Action_Types, Actions, Items и Pet_Items. Связь питомцев и предметов M:N реализована через инвентарь Pet_Items с составным первичным ключом. Модель использует сущности и требования проекта тамагочи; предметы и инвентарь включены из беклога #21.
+
+- [ER-диаграмма PNG](docs/database/er_diagram.png)
+- [ER-диаграмма SVG](docs/database/er_diagram.svg)
+- [Редактируемый исходник draw.io](docs/database/er_diagram.drawio) — скачайте файл и откройте через «Файл → Открыть с → Устройство» в draw.io.
+- [Анализ предметной области](docs/database/domain-analysis.md)
+- [Схема SQL с ограничениями и индексами](database/schema.sql)
+- [Тестовые данные](database/seed_data.sql)
+- [Обоснование нормализации 1NF → 2NF → 3NF](database/normalization.md)
+- [Документация в Wiki](https://github.com/mon0max/Virtual-Pet-Simulator-Tamagotchi-SRS/wiki/normalization)
+
+![ER-модель тамагочи](docs/database/er_diagram.png)
+
+Для проверки нужен Python со встроенным SQLite 3.37+; дополнительные пакеты не требуются:
+
+```sh
+python tests/database_test.py
+```
+
+Тесты создают БД в памяти, выполняют schema.sql и seed_data.sql, проверяют связи, ограничения, значения по умолчанию, индексы, удаление и запросы к истории/инвентарю. Они запускаются также в CI.
+
+Для ручной проверки запустите `sqlite3 tamagotchi.db` из корня репозитория и выполните:
+
+```sql
+.read database/schema.sql
+.read database/seed_data.sql
+PRAGMA foreign_key_check;
+PRAGMA integrity_check;
+```
+
+Ожидается отсутствие нарушений внешних ключей и результат `ok`. Скрипты выполняются один раз в пустой БД. Внешние ключи включаются командой `PRAGMA foreign_keys = ON` на каждом новом соединении до транзакции.
+
+Лабораторная №4 добавляет проектирование и SQL-артефакты. Веб-прототип продолжает сохранять состояние в localStorage; подключение БД, магазин и экономика остаются в беклоге.
