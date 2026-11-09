@@ -11,6 +11,12 @@ function createPet(name, color) {
 }
 
 function careForPet(pet, action) {
+  if (action === 'play') {
+    if (pet.energy < 10) return 'Недостаточно энергии для игры (нужно не менее 10%).';
+    pet.happiness = Math.min(100, pet.happiness + 15);
+    pet.energy = Math.max(0, pet.energy - 10);
+    return 'Питомец поиграл!';
+  }
   const key = action === 'feed' ? 'satiety' : action === 'water' ? 'hydration' : null;
   if (!key) throw new Error('Неизвестное действие.');
   if (pet[key] >= 100) return action === 'feed' ? 'Питомец уже сыт.' : 'Питомец не хочет пить.';
@@ -63,18 +69,28 @@ if (typeof document !== 'undefined') {
     }
   }
 
-  for (const [action, label] of [['feed', 'Покормить'], ['water', 'Напоить']]) {
+  for (const [action, label] of [['feed', 'Покормить'], ['water', 'Напоить'], ['play', 'Играть']]) {
     const button = document.createElement('button');
     button.type = 'button';
     button.textContent = label;
     button.addEventListener('click', () => {
+      const canPlay = action === 'play' && pet.energy >= 10;
       const result = careForPet(pet, action);
       const warning = save();
       render();
       message.textContent = result + warning;
+      if (canPlay) {
+        const avatar = document.getElementById('pet');
+        void avatar.offsetWidth;
+        avatar.classList.add('playing');
+      }
     });
     document.getElementById('actions').append(button);
   }
+
+  document.getElementById('pet').addEventListener('animationend', () => {
+    document.getElementById('pet').classList.remove('playing');
+  });
 
   try {
     const saved = localStorage.getItem(storageKey);
