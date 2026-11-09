@@ -9,6 +9,25 @@
 <body>
   <main class="container">
     <h1>Мой виртуальный питомец</h1>
+    <form id="createForm">
+      <h2>Создать питомца</h2>
+      <label for="petName">Имя (1–20 символов)</label>
+      <input id="petName" name="petName" required maxlength="20" autocomplete="off">
+      <label for="petColor">Окрас</label>
+      <select id="petColor" name="petColor">
+        <option value="ginger">Рыжий</option>
+        <option value="gray">Серый</option>
+        <option value="white">Белый</option>
+      </select>
+      <button type="submit">Создать</button>
+    </form>
+    <section id="petScreen" hidden aria-labelledby="petTitle">
+      <h2 id="petTitle"></h2>
+      <div id="pet" class="pet" role="img" aria-label="Виртуальный кот">🐱</div>
+      <div id="stats"></div>
+      <div id="actions" class="actions"></div>
+    </section>
+    <p id="message" role="status" aria-live="polite"></p>
   </main>
   <script src="script.js"></script>
 </body>
