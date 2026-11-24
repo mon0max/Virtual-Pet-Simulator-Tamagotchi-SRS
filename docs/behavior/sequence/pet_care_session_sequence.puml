@@ -1,0 +1,60 @@
+@startuml
+skinparam defaultFontName DejaVu Sans
+title Сеанс ухода за питомцем
+
+actor "Пользователь" as User
+boundary "Страница симулятора" as UI
+control "Сценарий страницы" as App
+participant "Логика питомца" as Pet
+database "localStorage" as Storage
+
+== Открытие страницы ==
+User -> UI : Открывает симулятор
+UI -> App : Запуск script.js
+App -> Storage : getItem("tamagotchi.pet.v1")
+alt Есть сохранение
+  Storage --> App : Строка JSON
+  App -> App : JSON.parse(saved)
+  opt JSON разобран
+    App -> Pet : isValidPet(restored)
+    Pet --> App : Результат проверки имени, окраса и шкал
+  end
+  alt Данные корректны
+    App -> UI : Показать питомца и шкалы,\nпоказать «Прогресс загружен.»
+  else JSON или данные некорректны
+    App -> UI : Оставить форму и показать сообщение\nо недоступном или повреждённом сохранении
+  end
+else Сохранения нет
+  Storage --> App : null
+  App -> UI : Оставить форму создания
+else Чтение недоступно
+  Storage --> App : Исключение
+  App -> UI : Оставить форму и показать сообщение о сохранении
+end
+opt Пользователь создаёт питомца через форму
+  ref over User, Storage : Создание питомца
+end
+
+== Уход ==
+loop Для каждого действия с открытого экрана питомца
+  User -> UI : Выбирает кормление, поение или игру
+  UI -> App : Событие click
+  App -> Pet : careForPet(pet, action)
+  Pet --> App : Сообщение о результате действия
+  App -> Storage : setItem("tamagotchi.pet.v1", JSON)
+  alt Запись выполнена
+    Storage --> App : Запись завершена
+    App -> UI : Обновить шкалы и показать результат
+  else Запись недоступна
+    Storage --> App : Исключение
+    App -> UI : Обновить шкалы, показать результат и предупреждение
+  end
+  opt Игра состоялась
+    App -> UI : Запустить анимацию игры
+  end
+end
+
+== Повторное открытие ==
+User -> UI : Снова открывает симулятор в том же браузере и на том же адресе
+ref over User, Storage : Открытие страницы с последним сохранённым состоянием
+@enduml

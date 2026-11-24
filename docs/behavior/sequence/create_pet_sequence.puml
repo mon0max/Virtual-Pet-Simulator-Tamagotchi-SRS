@@ -1,0 +1,36 @@
+@startuml
+skinparam defaultFontName DejaVu Sans
+title Создание питомца
+
+actor "Пользователь" as User
+boundary "Форма и экран питомца" as UI
+control "Обработчик формы" as Form
+participant "Логика питомца" as Pet
+database "localStorage" as Storage
+
+User -> UI : Вводит имя, выбирает окрас\nи нажимает «Создать»
+alt Браузер пропускает отправку формы
+  UI -> Form : Событие submit
+  activate Form
+  Form -> Pet : createPet(name, color)
+    Pet -> Pet : Убрать пробелы по краям имени\nПроверить длину (1-20) и окрас
+  alt Имя и окрас допустимы
+    Pet --> Form : Питомец с четырьмя показателями по 50%
+    Form -> UI : Показать питомца и шкалы, скрыть форму
+    Form -> Storage : setItem("tamagotchi.pet.v1", JSON)
+    alt Сохранение выполнено
+      Storage --> Form : Запись завершена
+      Form -> UI : Показать «Питомец создан!»
+    else Хранилище недоступно
+      Storage --> Form : Исключение
+      Form -> UI : Показать «Питомец создан!»\nи предупреждение о сохранении
+    end
+  else Недопустимое имя или окрас
+    Pet --> Form : Ошибка проверки
+    Form -> UI : Показать сообщение об ошибке
+  end
+  deactivate Form
+else Имя не введено
+  UI --> User : Показать подсказку обязательного поля
+end
+@enduml

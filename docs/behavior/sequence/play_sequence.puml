@@ -1,0 +1,41 @@
+@startuml
+skinparam defaultFontName DejaVu Sans
+title Игра с питомцем
+
+actor "Пользователь" as User
+boundary "Экран питомца" as UI
+control "Обработчик кнопки" as Handler
+participant "Логика питомца" as Pet
+database "localStorage" as Storage
+
+User -> UI : Нажимает «Играть»
+UI -> Handler : Событие click
+activate Handler
+Handler -> Handler : Определить возможность игры\n(энергия не ниже 10%)
+Handler -> Pet : careForPet(pet, "play")
+activate Pet
+alt Энергия не ниже 10%
+  Pet -> Pet : Добавить 15 к счастью (до 100%)\nи вычесть 10 из энергии
+  Pet --> Handler : «Питомец поиграл!»
+else Энергия ниже 10%
+  Pet --> Handler : Сообщение о нехватке энергии
+end
+deactivate Pet
+
+Handler -> Storage : setItem("tamagotchi.pet.v1", JSON)
+alt Сохранение выполнено
+  Storage --> Handler : Запись завершена
+else Хранилище недоступно
+  Storage --> Handler : Исключение
+  Handler -> Handler : Подготовить предупреждение
+end
+Handler -> UI : Обновить шкалы
+Handler -> UI : Показать результат и предупреждение, если оно есть
+opt Игра состоялась
+  Handler -> UI : Добавить класс playing
+end
+deactivate Handler
+opt Браузер завершил анимацию
+  UI -> UI : Удалить класс playing по animationend
+end
+@enduml
