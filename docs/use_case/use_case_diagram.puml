@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+skinparam defaultFontName DejaVu Sans
+title Варианты использования симулятора питомца
+
+actor "Пользователь" as User
+
+rectangle "Симулятор питомца" {
+  usecase "Просмотреть состояние\nпитомца" as View
+  usecase "Создать питомца" as Create
+  usecase "Открыть симулятор" as Open
+  usecase "Восстановить прогресс" as Restore
+  usecase "Покормить питомца" as Feed
+  usecase "Напоить питомца" as Water
+  usecase "Поиграть с питомцем" as Play
+  usecase "Проверить имя и окрас" as Validate
+  usecase "Сохранить прогресс" as Save
+
+  Create ..> Validate : <<include>>
+  Create ..> Save : <<include>>
+  Feed ..> Save : <<include>>
+  Water ..> Save : <<include>>
+  Play ..> Save : <<include>>
+  Restore .right.> Open : <<extend>>
+  note right of Restore
+    Есть корректное сохранение
+  end note
+}
+
+User -- Create
+User -- Open
+User -- View
+User -- Feed
+User -- Water
+User -- Play
+@enduml

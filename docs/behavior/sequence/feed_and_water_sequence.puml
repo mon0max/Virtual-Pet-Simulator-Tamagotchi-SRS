@@ -1,0 +1,35 @@
+@startuml
+skinparam defaultFontName DejaVu Sans
+title Кормление и поение питомца
+
+actor "Пользователь" as User
+boundary "Экран питомца" as UI
+control "Обработчик кнопки" as Handler
+participant "Логика питомца" as Pet
+database "localStorage" as Storage
+
+User -> UI : Нажимает «Покормить» или «Напоить»
+UI -> Handler : Событие click
+activate Handler
+Handler -> Pet : careForPet(pet, action)
+activate Pet
+Pet -> Pet : Выбрать показатель\nfeed: сытость, water: утоление жажды
+alt Показатель меньше 100%
+  Pet -> Pet : Увеличить показатель на 20\nс ограничением до 100%
+  Pet --> Handler : «Питомец поел.» или «Питомец попил.»
+else Показатель равен 100%
+  Pet --> Handler : «Питомец уже сыт.» или «Питомец не хочет пить.»
+end
+deactivate Pet
+
+Handler -> Storage : setItem("tamagotchi.pet.v1", JSON)
+alt Сохранение выполнено
+  Storage --> Handler : Запись завершена
+else Хранилище недоступно
+  Storage --> Handler : Исключение
+  Handler -> Handler : Подготовить предупреждение
+end
+Handler -> UI : Обновить шкалы
+Handler -> UI : Показать результат и предупреждение, если оно есть
+deactivate Handler
+@enduml
